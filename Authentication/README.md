@@ -30,4 +30,25 @@
 
 - Sau gần 10000 payload thì em đã tìm được tài khoản là `azureuser` và mật khẩu `mustang`
 
-![Alt text](image-1.png)
+## Lab: Username enumeration via response timing
+
+- Bài này em vẫn sẽ thử nhập tài khoản và mật khẩu để thử xem response như thế nào
+
+![Alt text](image-2.png)
+
+- Em thử đăng nhập đúng và sai thì nhận ra nếu mật khẩu dài thì nó sẽ kiểm tra rất lâu. Tức thời gian phản hồi sẽ phụ thuộc vào độ dài mật khẩu (nếu tài khoản đúng).
+
+- Từ đây em sẽ brute force với mật khẩu dài và tên tài khoản. 
+
+- Bài này họ giới hạn request nên em sử dụng thêm header `X-Forwarded-For` khác nhau với từng request.
+
+![Alt text](image-3.png)
+
+- Em tìm được tài khoản `alabama` có time response khác với các tài khoản khác và lâu hơn.
+
+![Alt text](image-4.png)
+
+- Giờ chỉ cần brute mật khẩu nữa là xong. Em tìm được mật khẩu với status 302 là `yankees`.
+
+![Alt text](image-5.png)
+
